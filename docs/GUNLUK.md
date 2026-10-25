@@ -126,10 +126,22 @@ Bu teşhis önceki bütün belirtileri açıklıyor: rastgele durmalar, v2'nin �
 
 ---
 
+## Baskıdan önce son kontrol
+
+- **Çakışma kontrolü:** Braketler ve plaka bilgisayarda bir araya getirilip çakışma testi yapıldı. Braket flanşının **ULN2003 kartının alttan gelen vida başlarına** çarptığı fark edildi. Flanşın ortası, kenarları 45° olacak şekilde açıldı. Bu açı sayesinde yan yatık baskıda destek gerekmiyor. Yeniden yapılan testte motor gövdesi, sarhoş teker yükselticisi ve vida başlarıyla hiçbir çakışma kalmadı.
+- **Destek tartışması:** Cura braketlerde kırmızı alanlar gösterince destek eklemek cazip geldi. Kırmızı alanlar damla şeklindeki deliklerin tepeleri ve ~11 mm'lik köprülerdi, yani destek gerekmiyordu. "Everywhere" desteği delikleri dolduracağı için kaldırıldı.
+- **Termistör:** Anakarttaki TH0 fişi çıkarılıp kontrol edildi: yanık, eğik uç ya da gevşeklik yok. Geriye kablonun içinde, hareketle açılıp kapanan bir kopukluk ihtimali kalıyor. Baskı boyunca sıcaklık izlenecek.
+- **Tek tabla:** Plaka + 2 braket + 2 teker birlikte dilimlendi (4 duvar, %40 dolgu, brim 5 mm, G29). Sonuç ~9 saat, 69 g. G-code satır satır kontrol edildi: sıcaklıklar, G29, destek yok, fan %80, parçalar tablanın sınırları içinde.
+
+---
+
 ## Sıradaki adımlar
 
-- [ ] Nozül termistörü: fişi kontrol et ve gerekirse değiştir
-- [ ] Plaka v5 + 2 braket + 2 teker v3'ü tek tablada bas
+- [x] Nozül termistörü: anakarttaki fiş kontrol edildi (sağlam)
+- [ ] Nozül termistörü: baskı sırasında sıcaklık zıplarsa termistörü değiştir
+- [x] Plaka v5 + 2 braket + 2 teker v3'ü tek tablada dilimle
+- [ ] Tek tabla baskısı (~9 saat)
+- [ ] Isıl insert'ler + braket ve motor montajı
 - [ ] Motorlar + ULN2003 + güç devresi
 - [ ] `ilk_surus_testi` ile kalibrasyon (15 cm kare, 90° dönüş)
 - [ ] Buton kartı + buzzer

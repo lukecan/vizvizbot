@@ -15,13 +15,13 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 | Bölüm | Durum |
 |---|---|
 | Tolerans testi | ✅ Tamam (0.3 mm) |
-| Şasi | 🔄 v5: plaka + ayrı braketler, basılmayı bekliyor |
-| Tekerler | 🔄 v3: 5 kollu, vidalı göbek, basılmayı bekliyor |
-| Sarhoş teker montajı | 🔄 v5'te delikler genişletildi |
+| Şasi | 🖨️ v5: plaka + ayrı braketler, tek tablada dilimlendi (9 sa 1 dk) |
+| Tekerler | 🖨️ v3: 5 kollu, vidalı göbek, aynı baskıda |
+| Sarhoş teker montajı | 🖨️ v5'te delikler 3.0 mm'ye genişletildi |
 | Elektronik (motorlar + sürücüler + güç) | ⏳ Sırada |
 | İlk sürüş ve kalibrasyon | ⏳ |
 | Kabuk, tuş kapakları, kanatlar | ⏳ Tasarlandı, basılmadı |
-| Yazıcı: nozül termistörü arızası | ⚠️ Teşhis edildi, değişim bekliyor |
+| Yazıcı: nozül termistörü arızası | ⚠️ Anakarttaki fiş sağlam çıktı. Kablo içi kopukluk şüphesi sürüyor, baskıda izleniyor |
 
 ---
 
@@ -57,7 +57,25 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 | `stl/vizvizbot_teker_v3.stl` | Dış yüz tablada | 2 teker, desteksiz |
 | `stl/vizvizbot_kabuk_v1_*.stl` | | Kabuk için tabladan destek gerekir |
 
-**Ayarlar:** 0.2 mm katman · 4 duvar · %40 dolgu · PLA 200 °C / tabla 60 °C · fan %80 · brim · başlangıç G-code'unda `G28` sonrasına `G29` (CR Touch).
+### Tek tablada hepsi (önerilen)
+
+Plaka, 2 braket ve 2 teker Ender'in 220×220 tablasına birlikte sığıyor. Cura'da üç STL'i aç ve **Ctrl+R** ile otomatik diz.
+
+| Ayar | Değer |
+|---|---|
+| Katman | 0.2 mm |
+| Duvar | 1.6 mm (4 çizgi) |
+| Dolgu | %40 |
+| Hız | 45 mm/s, taban/üst katmanlar 40 mm/s |
+| Sıcaklık | PLA 200 °C / tabla 60 °C |
+| Fan | %80 |
+| Yapışma | Brim, 5 mm |
+| Destek | **Yok.** Braketlerdeki kırmızı alanlar sadece kısa köprüler |
+| Başlangıç G-code | `G28` satırından sonra `G29` (CR Touch ile tabla ölçümü) |
+
+Sonuç: **~9 saat, 69 g PLA.**
+
+> ⚠️ Desteği **"Everywhere"** ile açma: motor, vida ve insert deliklerinin içi destekle dolar ve temizlenmez.
 
 Kendi ölçülerine göre değiştirmek için `cad/` klasöründeki `.scad` dosyalarını OpenSCAD ile aç. Bütün ölçüler dosyaların başında, açıklamalı değişkenler olarak duruyor.
 
@@ -65,7 +83,7 @@ Kendi ölçülerine göre değiştirmek için `cad/` klasöründeki `.scad` dosy
 
 ## Montaj (özet)
 
-1. **Isıl insert'leri** braket flanşlarındaki deliklere havya ile göm.
+1. **Brim'i** soy ve **ısıl insert'leri** braket flanşlarındaki 4 deliğe havya ile göm.
 2. **Braketleri** plakanın altına, plakanın üstünden geçen 2'şer M3×10 vidayla bağla.
 3. **Motorları** braketlere dışarıdan sok. **Mil yukarıda**, plakaya yakın tarafta olmalı. Kulaklardan M3 vida + somunla sabitle.
 4. **Sarhoş tekeri** arkadaki yükselticiye kendi cıvatalarıyla bağla. Yay şeklindeki delikler hizalama payı veriyor.
