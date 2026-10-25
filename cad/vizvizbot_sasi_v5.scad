@@ -12,6 +12,7 @@
 //      Braket plakaya 2 adet M3x10 vida + ısıl insert ile bağlanır.
 //      Sarhoş teker delikleri 2.4 -> 3.0 mm ve merkeze doğru da uzatıldı
 //      (cıvatalar 90 derece dik geçmiyordu).
+//      Flanşın ortası ULN2003 kartının vida başları için açıldı.
 //
 //  Kullanım: Aşağıdaki "parca" satırını değiştir, F6 -> F7 ile STL al.
 //    "montaj"      : sadece önizleme
@@ -205,6 +206,12 @@ module braket() {
     y_delik(0, motor_z, yi - b_flans_derin - 5, yi + 0.02, r_m + 0.5, 0.5);
     // kulak vida delikleri
     for (sx = [-1, 1]) y_delik(sx * kulak_aralik / 2, motor_z, yi - 1, yd + 1, vida_delik / 2);
+    // flanşın ortası: ULN2003 kartının alttan gelen vida başlarına yer aç
+    // (kenarlar 45 derece, yan yatık baskıda destek gerekmez)
+    translate([0, 0, plaka_alt - b_flans - 0.1]) linear_extrude(b_flans + 0.2)
+      polygon([[-10, yi - 5.1], [10, yi - 5.1],
+               [10 + b_flans_derin, yi - 5.1 - b_flans_derin],
+               [-10 - b_flans_derin, yi - 5.1 - b_flans_derin]]);
     // plaka bağlantısı: ısıl insert delikleri (flanş boyunca)
     for (sx = [-1, 1])
       translate([sx * b_bag_x, b_bag_y, plaka_alt - b_flans - 0.01])
