@@ -1,0 +1,5 @@
+*.gcode
+!tools/*.gcode
+*.3mf
+.DS_Store
+Thumbs.db
