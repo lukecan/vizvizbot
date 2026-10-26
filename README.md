@@ -8,6 +8,10 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 
 ![Şasi v5 montaj önizlemesi](docs/gorseller/sasi_v5_montaj.png)
 
+| Braket v7, dış yüz | Braket v7, iç yüz |
+|---|---|
+| ![](docs/gorseller/braket_v7_dis_yuz.png) | ![](docs/gorseller/braket_v7_ic_yuz.png) |
+
 ---
 
 ## Durum
@@ -15,13 +19,14 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 | Bölüm | Durum |
 |---|---|
 | Tolerans testi | ✅ Tamam (0.3 mm) |
-| Şasi | 🖨️ v5: plaka + ayrı braketler, tek tablada dilimlendi (9 sa 1 dk) |
-| Tekerler | 🖨️ v3: 5 kollu, vidalı göbek, aynı baskıda |
-| Sarhoş teker montajı | 🖨️ v5'te delikler 3.0 mm'ye genişletildi |
+| Plaka | ✅ v5 basıldı (9 saatlik tek tabla baskısı sorunsuz bitti) |
+| Tekerler | ✅ v3 basıldı: 5 kollu, vidalı göbek |
+| Sarhoş teker montajı | ✅ v5 plakada delikler 3.0 mm'ye genişletildi |
+| Motor braketleri | 🖨️ v7: v4'ün U şekli ve ölçüleri, güçlendirilmiş. Basılıyor |
 | Elektronik (motorlar + sürücüler + güç) | ⏳ Sırada |
 | İlk sürüş ve kalibrasyon | ⏳ |
 | Kabuk, tuş kapakları, kanatlar | ⏳ Tasarlandı, basılmadı |
-| Yazıcı: nozül termistörü arızası | ⚠️ Anakarttaki fiş sağlam çıktı. Kablo içi kopukluk şüphesi sürüyor, baskıda izleniyor |
+| Yazıcı: nozül termistörü arızası | ⚠️ Anakarttaki fiş sağlam çıktı. Son 9 saatlik baskı hatasız bitti, izlenmeye devam |
 
 ---
 
@@ -53,7 +58,7 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 | Dosya | Yön | Not |
 |---|---|---|
 | `stl/vizvizbot_sasi_v5_plaka.stl` | Plakanın üst yüzü tablada | Desteksiz |
-| `stl/vizvizbot_sasi_v5_braketler.stl` | **Yan yatık** (dosyadaki gibi) | Desteksiz. Bu yön braketin gücünün sırrı, değiştirme |
+| `stl/vizvizbot_sasi_v7_braketler.stl` | **Yan yatık** (dosyadaki gibi) | Desteksiz. Bu yön braketin gücünün sırrı, değiştirme. **Gyroid** dolgu önerilir |
 | `stl/vizvizbot_teker_v3.stl` | Dış yüz tablada | 2 teker, desteksiz |
 | `stl/vizvizbot_kabuk_v1_*.stl` | | Kabuk için tabladan destek gerekir |
 
@@ -65,7 +70,7 @@ Plaka, 2 braket ve 2 teker Ender'in 220×220 tablasına birlikte sığıyor. Cur
 |---|---|
 | Katman | 0.2 mm |
 | Duvar | 1.6 mm (4 çizgi) |
-| Dolgu | %40 |
+| Dolgu | %40, Gyroid (darbeye dayanıklı, her yönde dengeli) |
 | Hız | 45 mm/s, taban/üst katmanlar 40 mm/s |
 | Sıcaklık | PLA 200 °C / tabla 60 °C |
 | Fan | %80 |
@@ -85,7 +90,7 @@ Kendi ölçülerine göre değiştirmek için `cad/` klasöründeki `.scad` dosy
 
 1. **Brim'i** soy ve **ısıl insert'leri** braket flanşlarındaki 4 deliğe havya ile göm.
 2. **Braketleri** plakanın altına, plakanın üstünden geçen 2'şer M3×10 vidayla bağla.
-3. **Motorları** braketlere dışarıdan sok. **Mil yukarıda**, plakaya yakın tarafta olmalı. Kulaklardan M3 vida + somunla sabitle.
+3. **Önce motorları braketlere tak, sonra braketleri plakaya bağla** (kulak somunlarını içeriden tutmak için). **Motorları** braketlere dışarıdan sok. **Mil yukarıda**, plakaya yakın tarafta olmalı. Kulaklardan M3 vida + somunla sabitle.
 4. **Sarhoş tekeri** arkadaki yükselticiye kendi cıvatalarıyla bağla. Yay şeklindeki delikler hizalama payı veriyor.
 5. **Tekerler:** somunu göbekteki yuvaya düşür, M3×10 vidayı içeriden başlat, tekeri mile tak (milin düz yüzü vidaya baksın), janttaki küçük delikten sık, en son O-ring'i tak.
 

@@ -135,13 +135,32 @@ Bu teşhis önceki bütün belirtileri açıklıyor: rastgele durmalar, v2'nin �
 
 ---
 
+## Tek tabla baskısı ve braket v7
+
+**Sonuç:** Plaka, 2 braket ve 2 teker, 9 saatlik tek baskıda **hatasız** çıktı. Katmanlar düzgün.
+
+**v5 braketin sorunu:** Motoru takmaya gelince ortaya çıktı. Braketi güçlendirmek için duvarın iç yüzüne boydan boya bir destek üçgeni eklemiştim. Motor kulak vidalarının **somunları** tam bu üçgene çarpıyordu, yaklaşık 1–1.5 mm. Bilgisayardaki çakışma kontrolünde vida başlarını, motoru ve plakayı test etmiştim, ama kulak somunlarını unutmuşum.
+
+**v6 (kullanılmadı):** İlk refleks, somunların arkasına cep açmak oldu. Mert'in cevabı net: "Bu da olmamış. İlk braketlerin U yapısı gayet iyiydi, tam daire kapatmana gerek yok, boyutu da kusursuzdu. Sadece onu güçlendir."
+
+**v7:** v4'ün geometrisine geri dönüldü:
+- **Aynı kalanlar:** U şekli (motor deliğinin altı açık), 50 mm genişlik, aynı alt kenar, dış yüz aynı yerde.
+- **Güçlendirmeler:** yan yatık baskı, duvar 3 → 4 mm (içeri doğru), plakaya oturan 6 mm flanş + 2 insert, iç köşede boydan boya 5 mm pah. Pah somunların **üstünde** bitiyor.
+- **Çakışma kontrolü** bu sefer somun + pul (Ø7.2 × 3 mm) dahil yapıldı: temiz.
+- **Baskı:** 4 duvar, %40 **Gyroid** dolgu (darbeye dayanıklı), brim, destek yok. 1 sa 43 dk.
+
+**Ders:** Çalışan bir şeyi "güçlendirirken" onu baştan tasarlamak yerine **iyi olan kısmını koruyup** üstüne eklemek. Ve çakışma kontrolüne montajdaki **her** parçayı katmak, somunları da.
+
+---
+
 ## Sıradaki adımlar
 
 - [x] Nozül termistörü: anakarttaki fiş kontrol edildi (sağlam)
 - [ ] Nozül termistörü: baskı sırasında sıcaklık zıplarsa termistörü değiştir
 - [x] Plaka v5 + 2 braket + 2 teker v3'ü tek tablada dilimle
-- [ ] Tek tabla baskısı (~9 saat)
-- [ ] Isıl insert'ler + braket ve motor montajı
+- [x] Tek tabla baskısı (~9 saat): hatasız bitti
+- [ ] Braket v7 baskısı
+- [ ] Isıl insert'ler → motorlar braketlere → braketler plakaya → tekerler
 - [ ] Motorlar + ULN2003 + güç devresi
 - [ ] `ilk_surus_testi` ile kalibrasyon (15 cm kare, 90° dönüş)
 - [ ] Buton kartı + buzzer
