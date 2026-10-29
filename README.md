@@ -8,9 +8,9 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 
 ![Şasi v5 montaj önizlemesi](docs/gorseller/sasi_v5_montaj.png)
 
-| Braket v7, dış yüz | Braket v7, iç yüz |
-|---|---|
-| ![](docs/gorseller/braket_v7_dis_yuz.png) | ![](docs/gorseller/braket_v7_ic_yuz.png) |
+![Braket v11: motor ters takılı, mavi kapak yukarıda](docs/gorseller/braket_v11_montaj.png)
+
+*Braket v11: motor ters takılı. Mavi kablo kapağı yukarıda, mil aşağıda.*
 
 ---
 
@@ -22,7 +22,8 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 | Plaka | ✅ v5 basıldı (9 saatlik tek tabla baskısı sorunsuz bitti) |
 | Tekerler | ✅ v3 basıldı: 5 kollu, vidalı göbek |
 | Sarhoş teker montajı | ✅ v5 plakada delikler 3.0 mm'ye genişletildi |
-| Motor braketleri | 🖨️ v7: v4'ün U şekli ve ölçüleri, güçlendirilmiş. Basılıyor |
+| Motor braketleri | 🖨️ **v11 (son hali):** motor ters (mavi kapak yukarıda), ilk tasarımın U şekli, güçlendirilmiş. Basılıyor |
+| Sarhoş teker yükselticisi | 🖨️ 24 mm, v11 ile birlikte |
 | Elektronik (motorlar + sürücüler + güç) | ⏳ Sırada |
 | İlk sürüş ve kalibrasyon | ⏳ |
 | Kabuk, tuş kapakları, kanatlar | ⏳ Tasarlandı, basılmadı |
@@ -39,7 +40,8 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 | ULN2003 sürücü kartı | 2 | Motorla birlikte gelen |
 | 6×6 mm tach buton (12 mm boy) | 6 | İleri, geri, sol, sağ, GO, sil |
 | Pasif buzzer + 220 Ω direnç | 1 | |
-| Sarhoş teker (ball caster) | 1 | Kendi cıvata ve somunlarıyla (27 mm) |
+| Sarhoş teker (ball caster) | 1 | |
+| M2 × 40 cıvata + somun | 3 | Sarhoş teker + 24 mm yükseltici (tekerle gelen 27 mm'likler yetmiyor) |
 | O-ring (3 mm kesit) | 2 | Teker lastiği |
 | 4×AA pil yuvası + Ni-MH pil | 1 | |
 | Anahtar (switch) | 1 | |
@@ -58,7 +60,8 @@ Bu repo; 3D baskı parçalarını (OpenSCAD kaynaklarıyla birlikte), Arduino ko
 | Dosya | Yön | Not |
 |---|---|---|
 | `stl/vizvizbot_sasi_v5_plaka.stl` | Plakanın üst yüzü tablada | Desteksiz |
-| `stl/vizvizbot_sasi_v7_braketler.stl` | **Yan yatık** (dosyadaki gibi) | Desteksiz. Bu yön braketin gücünün sırrı, değiştirme. **Gyroid** dolgu önerilir |
+| `stl/vizvizbot_braket_v11_braketler.stl` | **Dosyadaki gibi** (flanş tablada, braket dik) | Desteksiz. Motor deliği tam yuvarlak çıkar |
+| `stl/vizvizbot_braket_v11_yukseltici.stl` | Düz | Sarhoş tekerle plakadaki çıkıntı arasına girer |
 | `stl/vizvizbot_teker_v3.stl` | Dış yüz tablada | 2 teker, desteksiz |
 | `stl/vizvizbot_kabuk_v1_*.stl` | | Kabuk için tabladan destek gerekir |
 
@@ -80,6 +83,17 @@ Plaka, 2 braket ve 2 teker Ender'in 220×220 tablasına birlikte sığıyor. Cur
 
 Sonuç: **~9 saat, 69 g PLA.**
 
+### Braketler (v11) + yükseltici
+
+| Ayar | Değer |
+|---|---|
+| Duvar | **5 çizgi** (2.0 mm) |
+| Üst/alt | 1.2 mm |
+| Dolgu | **%50 Gyroid** |
+| Sıcaklık | 205 °C / 60 °C |
+| Destek | Yok |
+| Yapışma | Brim 5 mm |
+
 > ⚠️ Desteği **"Everywhere"** ile açma: motor, vida ve insert deliklerinin içi destekle dolar ve temizlenmez.
 
 Kendi ölçülerine göre değiştirmek için `cad/` klasöründeki `.scad` dosyalarını OpenSCAD ile aç. Bütün ölçüler dosyaların başında, açıklamalı değişkenler olarak duruyor.
@@ -90,8 +104,8 @@ Kendi ölçülerine göre değiştirmek için `cad/` klasöründeki `.scad` dosy
 
 1. **Brim'i** soy ve **ısıl insert'leri** braket flanşlarındaki 4 deliğe havya ile göm.
 2. **Braketleri** plakanın altına, plakanın üstünden geçen 2'şer M3×10 vidayla bağla.
-3. **Önce motorları braketlere tak, sonra braketleri plakaya bağla** (kulak somunlarını içeriden tutmak için). **Motorları** braketlere dışarıdan sok. **Mil yukarıda**, plakaya yakın tarafta olmalı. Kulaklardan M3 vida + somunla sabitle.
-4. **Sarhoş tekeri** arkadaki yükselticiye kendi cıvatalarıyla bağla. Yay şeklindeki delikler hizalama payı veriyor.
+3. **Önce motorları braketlere tak, sonra braketleri plakaya bağla** (kulak somunlarını içeriden tutmak için). Motoru braketin dış yüzünden sok: **mavi kablo kapağı yukarıda**, deliğin tepesindeki yuvadan geçecek; **mil aşağıda**. Kulaklardan M3 × 10 vida + somunla sabitle.
+4. **Sarhoş teker:** teker → 24 mm yükseltici → plakadaki çıkıntı sırasıyla, **M2 × 40** cıvatalarla bağla. Yay şeklindeki delikler hizalama payı veriyor. Yükseltici olmadan şasi arkaya yatar.
 5. **Tekerler:** somunu göbekteki yuvaya düşür, M3×10 vidayı içeriden başlat, tekeri mile tak (milin düz yüzü vidaya baksın), janttaki küçük delikten sık, en son O-ring'i tak.
 
 ---

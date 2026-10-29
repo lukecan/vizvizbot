@@ -153,13 +153,50 @@ Bu teşhis önceki bütün belirtileri açıklıyor: rastgele durmalar, v2'nin �
 
 ---
 
+## Braket maratonu: v8 → v11
+
+Braket bu projede en çok tekrarlanan parça oldu. Her sürüm bir şey öğretti.
+
+| Sürüm | Ne denendi | Sonuç |
+|---|---|---|
+| v7 | v4'ün U şekli, yan yatık baskı, flanş + insert | ✅ Basıldı, takıldı, çalıştı. Ama motorun **üstündeki bant 0.7 mm**, delik damla şeklinde |
+| v8 | Plaka + braket tekrar **tek parça** (deliğin üstünü plaka kapatsın) | ❌ Bastığım plaka kullanılamazdı |
+| v9 | Ayrı parça, ilk tasarımdaki gibi **dik baskı** → delik tam yuvarlak | Görünüş doğru, motorun üstü hâlâ ince |
+| v10 | Motor braketin içinde **4 mm aşağı**, bant 0.7 → 4.7 mm, sarhoş tekere 4 mm pul | Mantık doğru, ama mavi kapak hâlâ altta |
+| **v11** | Motor **ters**: mavi kapak yukarıda, mil aşağıda | ✅ **Son hali** |
+
+### Sorunlar ve dersler
+
+**"Halka" meselesi.** İlk tasarımda motor deliğinin üstünü **plaka** kapatıyordu (plaka ile braket tek parçaydı). Braketi ayırınca deliğin tepesinde sadece 0.7 mm kaldı ve halka gözle görülür şekilde bozuldu. Çözüm, motoru plakadan uzaklaştırıp araya gerçek malzeme koymak oldu.
+
+**Mavi kapak yerden 4 mm'deydi.** 28BYJ-48'in mili gövdenin ortasında değil, 8 mm kaçık. Kablo kapağı da milin tam karşısında. Mil yukarıdayken kapak yere neredeyse değiyordu. Motoru ters çevirmek yerden yüksekliği **4 mm'den 24 mm'ye** çıkardı. Bedeli: şasi 24 mm yükseldi, sarhoş tekere 24 mm'lik bir yükseltici gerekti.
+
+**Ölçüm tahminden iyidir.** Mavi kapak için önce tahmini değer girdim (merkezden 18.5 mm). Mertcan kumpasla ölçünce **16.5 mm** çıktı: tepesi 14.7 mm, gövdeyi saran tabanı 18.3 mm genişliğinde. Yuva buna göre küçüldü ve şasi 2 mm daha alçak kaldı.
+
+**Gereksiz güçlendirme de bir kusurdur.** v11'in ilk halinde motorun altı da kapalı halkaydı. Mertcan sordu: "Gerek var mıydı?" Yoktu. Motor ters olunca yükü motorun **üstündeki** bant taşıyor. Alt kısım ilk tasarımdaki gibi açık U oldu ve braketin yerden yüksekliği 18 mm'den 31 mm'ye çıktı.
+
+**İyi olanı koru.** v5 ve v7'de braketi baştan tasarladım ve her seferinde bir şey bozuldu: önce somunlar çarptı, sonra halka gitti. Doğru yaklaşım, ilk tasarımın ölçülerini ve şeklini koruyup sadece **güçlendirmekti**.
+
+### v11'in son hali
+- Ayrı parça, v5 plakaya 2 vida + 2 ısıl insert ile bağlanıyor
+- Tam yuvarlak motor deliği + tepesinde mavi kapak yuvası
+- Kapağın üstünde 6 mm'lik bant, flanş motorun üstünden kesintisiz geçiyor
+- 5 mm duvar, 6 mm kalın 14×20 mm uç üçgenleri, 4 mm iç pah
+- Alt kısım açık U (motor merkezinin 7 mm altında bitiyor)
+- Robotun yerden yüksekliği: **24 mm** (en alçak nokta motor gövdesi)
+- Çakışma kontrolü: kulak somunları + pullar, mavi kapak (takarken ve takılıyken), ULN2003 vidaları, sarhoş teker, plaka → hepsi temiz
+
+---
+
 ## Sıradaki adımlar
 
 - [x] Nozül termistörü: anakarttaki fiş kontrol edildi (sağlam)
 - [ ] Nozül termistörü: baskı sırasında sıcaklık zıplarsa termistörü değiştir
 - [x] Plaka v5 + 2 braket + 2 teker v3'ü tek tablada dilimle
 - [x] Tek tabla baskısı (~9 saat): hatasız bitti
-- [ ] Braket v7 baskısı
+- [x] Braket v7 baskısı ve deneme montajı
+- [ ] Braket v11 + sarhoş teker yükselticisi baskısı
+- [ ] 3 × M2 × 40 cıvata
 - [ ] Isıl insert'ler → motorlar braketlere → braketler plakaya → tekerler
 - [ ] Motorlar + ULN2003 + güç devresi
 - [ ] `ilk_surus_testi` ile kalibrasyon (15 cm kare, 90° dönüş)
