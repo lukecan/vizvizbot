@@ -391,19 +391,35 @@ module montaj() {
 }
 
 // ============================================================
-// Sarhoş teker ara pulu: tekerin flanşı ile yükseltici arasına girer
+// Sarhoş teker yükselticisi (v11.2)
+//  - Sarhoş teker -> yükseltici: tekerin kendi 27 mm cıvataları, BAŞLARI ALTTA
+//    (tekerin içinde, eskisi gibi). Somunlar yükselticinin ÜSTÜNDEKİ altıgen
+//    yuvalarda durur, dönmez (60 / 180 / 300 derece).
+//  - Yükseltici -> plaka: 3 x M3x20 vida, plakanın üstünden plakadaki yay
+//    deliklerinden geçip yükselticinin üstündeki ısıl insert'lere girer (0 / 120 / 240).
+//  Yükseltici 26 mm: cıvata ucu yuvanın içinde kalsın diye (24 mm'de 1.4 mm taşıyordu).
+//  Şasinin arkası öne göre ~2 mm yüksek olur (~2.5 derece, fark edilmez).
+yk_h            = 26;    // yükseltici yüksekliği
+yk_insert_derin = 9;     // M3x20: plaka 3 + çıkıntı 8.25 = 11.25 -> 8.75 mm insert'e girer
+yk_somun_ak     = somun_anahtar + 0.4;   // somun yuvası: 4.6 + 0.4 pay (karşılıklı düz kenarlar)
+yk_somun_derin  = 3.6;   // yuva derinliği (somun 1.5 + pul / cıvata payı)
 module caster_pul() {
   r = caster_ucgen / sqrt(3);
-  d = caster_vida + caster_bosluk;
   difference() {
-    cylinder(d = caster_cap, h = yukseltme, $fn = 96);
-    for (a = [0, 120, 240])
-      for (b = [-yay_aci : yay_aci / 4 : yay_aci - yay_aci / 4])
-        hull() for (c = [b, b + yay_aci / 4], dr = [-caster_radyal, caster_radyal])
-          rotate([0, 0, a + c]) translate([r + dr, 0, -1])
-            cylinder(d = d, h = yukseltme + 2, $fn = 24);
+    cylinder(d = caster_cap, h = yk_h, $fn = 96);
+    // M3 insert delikleri (plakadaki yay deliklerinin altında)
+    for (a = [0, 120, 240]) rotate([0, 0, a]) translate([r, 0, yk_h - yk_insert_derin])
+      cylinder(d = insert_delik, h = yk_insert_derin + 1, $fn = 32);
+    // sarhoş teker cıvataları: boydan boya delik + üstte altıgen somun yuvası
+    for (a = [60, 180, 300]) rotate([0, 0, a]) translate([r, 0, 0]) {
+      translate([0, 0, -1]) cylinder(d = caster_vida + caster_bosluk, h = yk_h + 2, $fn = 24);
+      translate([0, 0, yk_h - yk_somun_derin]) rotate([0, 0, 30])
+        cylinder(d = yk_somun_ak / cos(30), h = yk_somun_derin + 1, $fn = 6);
+    }
   }
 }
+echo(str("Yukseltici: cıvata ucu yükseltici tepesinin ", yk_h - (civata_boy - caster_flans),
+         " mm altında; somun yuvası tabanı tepeden ", yk_somun_derin, " mm aşağıda"));
 
 if (parca == "braketler") braketler_baski();
 else if (parca == "yukseltici") caster_pul();
