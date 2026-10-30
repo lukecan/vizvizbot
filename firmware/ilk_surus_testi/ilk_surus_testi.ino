@@ -16,8 +16,8 @@ int ADIM_DONUS = 1910;   // 90 derece için (teker arası ~112 mm)
 const int ADIM_BEKLE = 1200;  // mikrosaniye; küçüldükçe hızlanır
 
 // Motorlardan biri ters dönüyorsa ilgili değeri -1 yap
-const int SOL_YON = 1;
-const int SAG_YON = -1;
+const int SOL_YON = -1;   // ters motor montajı (v11): ileri için -1
+const int SAG_YON = 1;
 
 const byte SIRA[8][4] = {
   {1,0,0,0}, {1,1,0,0}, {0,1,0,0}, {0,1,1,0},

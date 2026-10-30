@@ -21,6 +21,11 @@ const int ADIM_KARE  = 3268;  // 15 cm ilerlemek için yarım adım sayısı (60
 const int ADIM_DONUS = 1910;  // 90 derece dönüş (teker arası ~112 mm); ilk_surus_testi ile kalibre et
 const int ADIM_BEKLE = 1200;  // adımlar arası bekleme (mikrosaniye) -> hız
 
+// Motor yönleri: robot ileri yerine geri gidiyorsa ikisini birden ters çevir,
+// sadece bir teker ters dönüyorsa o tekerin değerini ters çevir.
+const int SOL_YON = -1;   // ters motor montajı (braket v11) ile ölçüldü
+const int SAG_YON = 1;
+
 // 28BYJ-48 yarım adım (half-step) sırası
 const byte SIRA[8][4] = {
   {1,0,0,0}, {1,1,0,0}, {0,1,0,0}, {0,1,1,0},
@@ -113,10 +118,10 @@ void calistir() {
 
     // Motorlar ayna simetrik takıldığı için ileri giderken ters yönde dönerler
     switch (komutlar[i]) {
-      case ILERI: hareket(ADIM_KARE,   1, -1); break;
-      case GERI:  hareket(ADIM_KARE,  -1,  1); break;
-      case SOLA:  hareket(ADIM_DONUS, -1, -1); break;
-      case SAGA:  hareket(ADIM_DONUS,  1,  1); break;
+      case ILERI: hareket(ADIM_KARE,   SOL_YON,  SAG_YON); break;
+      case GERI:  hareket(ADIM_KARE,  -SOL_YON, -SAG_YON); break;
+      case SOLA:  hareket(ADIM_DONUS, -SOL_YON,  SAG_YON); break;
+      case SAGA:  hareket(ADIM_DONUS,  SOL_YON, -SAG_YON); break;
     }
 
     tone(BUZZER, 1500, 60);
